@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DictEt.WordPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="SearchWord"
+                Placeholder="Otsi sõna..." 
+                Focused="SearchWord_Focused"
+                TextChanged="SearchWord_TextChanged"
+                SearchButtonPressed="SearchWord_SearchButtonPressed">
+            </SearchBar>
+            <StackLayout x:Name="MainView" Margin="10, 0, 0, 0">
+              <ProgressBar x:Name="WebProgress" IsVisible="false" Progress ="0.2" HorizontalOptions="FillAndExpand" Opacity="0.3" />
+              <ListView x:Name="WordList" ItemSelected="WordList_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Label Text="{Binding .}" />
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+              </ListView>
+              <WebView x:Name="WordBrowser" WidthRequest="1000" HeightRequest="1000" 
+                     Navigating="WordBrowser_Navigating" Navigated="WordBrowser_Navigated" />
+              <Label x:Name="BottomLabel" FontSize = "20" Text="Sisu: CC-BY-SA, Vikisõnastiku kaastöölised." />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
